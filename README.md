@@ -19,5 +19,6 @@ This means it will not require any special configuration of service accounts etc
 
 ### Test Usage: Just list Azure Entra Users
 - `az ad user list`
+- OR: `az ad user list --query '[].{userPrincipalName:userPrincipalName, displayName:displayName}' -o json`
  
   
