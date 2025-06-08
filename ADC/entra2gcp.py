@@ -5,7 +5,7 @@ import sys
 
 
 #define constants
-from config import ALLOWABLE_DOMAINS
+from config import ALLOWABLE_DOMAINS, SKIP_USERS
 
 def fetch_azure_users():
     try:
@@ -43,6 +43,10 @@ def sync_users(azure_users, gcloud_users, dry_run=False):
         # Check if email domain is in the allowable domains list
         domain = email.split("@")[-1]
         if domain not in ALLOWABLE_DOMAINS:
+            print (f"Skipping User: {email} because domain: {domain}")
+            continue
+
+        if email in SKIP_USERS:
             continue
 
         # Add user if they don't exist in Google Cloud

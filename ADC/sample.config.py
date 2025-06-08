@@ -4,3 +4,9 @@
 ALLOWABLE_DOMAINS = [
     "example.com"
 ]
+
+
+SKIP_USERS = [
+    "skip.me@domain.com",
+    "skip.me.too@example.com",
+]
