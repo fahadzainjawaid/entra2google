@@ -1,0 +1,15 @@
+# No external packages are required for basic functionality
+# You can include tools for code quality or future extensions
+
+# Optional: For better CLI handling or enhancements
+rich>=13.0.0             # For colorful output (optional)
+
+# Optional: For type checking
+mypy>=1.0.0
+
+# Optional: For code linting/formatting
+black>=24.0.0
+flake8>=6.0
+google-auth>=2.0.0
+google-auth-oauthlib>=0.5.0
+google-api-python-client>=2.0.0
