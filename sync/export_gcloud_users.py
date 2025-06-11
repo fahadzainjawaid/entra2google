@@ -3,7 +3,30 @@ from google.auth import default
 from googleapiclient.discovery import build
 from google.auth.exceptions import DefaultCredentialsError
 
+import config
+
+
+
+def set_quota_project():
+    """
+    Set the quota project for the Google API client.
+    This is necessary to ensure that the API calls are billed to the correct project.
+    """
+    command = f"gcloud auth application-default set-quota-project {config.PROJECT_ID}"
+    import subprocess
+    try:
+        subprocess.run(command, shell=True, check=True)
+        #print(f"Quota project set to {config.PROJECT_ID}")
+    except subprocess.CalledProcessError as e:
+        print(f"ERROR: Failed to set quota project: {e}")
+        raise
+
 def get_all_users():
+    # get credentails for a project by fetch project id from the config file
+
+    # and then use the default credentials to access the Google Admin SDK
+    # This assumes that the environment is set up with the necessary permissions
+
     credentials, _ = default(scopes=['https://www.googleapis.com/auth/admin.directory.user.readonly'])
     service = build('admin', 'directory_v1', credentials=credentials)
 
@@ -29,6 +52,7 @@ def get_all_users():
 
 def main():
     try:
+        set_quota_project()  # Set the quota project for the API client
         users = get_all_users()
         print(json.dumps(users, indent=2))  # output to stdout
     except DefaultCredentialsError:

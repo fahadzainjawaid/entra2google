@@ -197,3 +197,4 @@ cython_debug/
 
 
 config.py
+*-key.json
