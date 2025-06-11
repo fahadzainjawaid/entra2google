@@ -3,7 +3,7 @@
 PROJECT_ID = "your-gcp-project-id"
 SERVICE_ACCOUNT_NAME = "gcloud-ad-sync-sa"
 DISPLAY_NAME = "Gcloud-Entra-Sync"
-KEY_FILE_NAME = f"{SERVICE_ACCOUNT_NAME}-key.json"
+KEY_FILE_NAME = f"./../{SERVICE_ACCOUNT_NAME}-key.json"
 DELEGATED_ADMIN_EMAIL = "admin@yourdomain.com"  # must be a super admin
 OAUTH_SCOPES = "https://www.googleapis.com/auth/admin.directory.user"
 
