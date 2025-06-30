@@ -1,0 +1,91 @@
+# Rename to config.py
+
+import os
+
+## define the domains in the array below, and then rename this file to 'config.py'
+## git will not include this config.py in the git repo
+
+ALLOWABLE_DOMAINS = [
+    "domain.com"
+]
+
+
+##---does not need to change
+GREEN = "\033[92m"
+RED = "\033[91m"
+RESET = "\033[0m"
+
+SKIP_USERS = [
+    "email-to-skip@email.com",
+    "2-email-to-skip@email.com",
+    "3-email-to-skip@email.com",
+]
+
+PROJECT_ID = "your-gcp-project-id"
+SERVICE_ACCOUNT_NAME = "gcloud-ad-sync-sa"
+DISPLAY_NAME = "Gcloud-Entra-Sync"
+KEY_FILE_NAME = f"./../{SERVICE_ACCOUNT_NAME}-key.json"
+DELEGATED_ADMIN_EMAIL = "admin@yourdomain.com"  # must be a super admin
+
+
+#-----no need to change these
+OAUTH_SCOPES = "https://www.googleapis.com/auth/admin.directory.user"
+
+
+
+# Roles to grant to the service account --- no need to change this
+IAM_ROLES = [
+    "roles/iam.serviceAccountTokenCreator",
+    "roles/serviceusage.serviceUsageConsumer"
+]
+
+
+GROUP_IDS = [
+    "group-object-id-1",
+    "group-object-id-2"
+]
+
+APP_IDS = [
+    "app-object-id-1",
+    "app-object-id-2"
+]
+
+
+#get this from Azure first and it will be the same in the future:  az rest --method GET --url "https://graph.microsoft.com/v1.0/servicePrincipals/$APP_ID/appRoles"
+DEFAULT_USER_APP_ROLE_ID= 'define-role-id-for-USER-ROLE'
+
+# Environment variable for organization
+org = os.environ.get("ORG", "default organization value")
+if org == "otherorganization":
+    ALLOWABLE_DOMAINS = [
+        "otherorganization.com"
+    ]
+    DISPLAY_NAME = "other-sevice-account-keyname"
+
+    SKIP_USERS = [
+    ]
+
+    KEY_FILE_NAME = "other-sevice-account-keyname.json"  # Name of the service account key file
+    PROJECT_ID = "other-project-id"  # Your GCP project ID
+    SERVICE_ACCOUNT_NAME = "other-sevice-account-keyname"  # Name of the service account
+    DELEGATED_ADMIN_EMAIL = "otheradmin@admin.com"  # must be a super admin
+
+
+    #--no need to change this
+    OAUTH_SCOPES = ["https://www.googleapis.com/auth/admin.directory.user"]  # OAuth scopes for the service account
+
+    INITIAL_PASSWORD = "tempPass123!"  # Initial password for new users
+
+    GROUP_IDS = [
+    "group-object-id-1",
+    "group-object-id-2"
+    ]
+
+    APP_IDS = [
+        "app-object-id-1",
+        "app-object-id-2"
+    ]
+
+
+    #get this from Azure first and it will be the same in the future:  az rest --method GET --url "https://graph.microsoft.com/v1.0/servicePrincipals/$APP_ID/appRoles"
+    DEFAULT_USER_APP_ROLE_ID= 'define-role-id-for-USER-ROLE'
